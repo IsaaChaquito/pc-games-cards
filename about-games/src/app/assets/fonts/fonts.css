@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'the-boys';
+  src: url(charlie-dont-surf.ttf);
+}
+
+.the-boys-font{
+  font-family: 'the-boys';
+}

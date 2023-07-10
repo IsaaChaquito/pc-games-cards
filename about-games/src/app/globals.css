@@ -1,0 +1,61 @@
+@import url('./assets/fonts/fonts.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  /* color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  font-family: 'the-boys'; */
+  background: rgb(230,248,248);
+  background: -moz-radial-gradient(circle, rgba(230,248,248,1) 0%, rgba(24,71,107,1) 0%, rgba(96,31,168,1) 0%, rgba(0,37,82,1) 100%);
+  background: -webkit-radial-gradient(circle, rgba(230,248,248,1) 0%, rgba(24,71,107,1) 0%, rgba(96,31,168,1) 0%, rgba(0,37,82,1) 100%);
+  background: radial-gradient(circle, rgba(230,248,248,1) 0%, rgba(24,71,107,1) 0%, rgba(96,31,168,1) 0%, rgba(0,37,82,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e6f8f8",endColorstr="#002552",GradientType=1);
+}
+
+.background-gradient{
+  background: rgb(230,248,248);
+  background: -moz-radial-gradient(circle, rgba(230,248,248,1) 0%, rgba(24,71,107,1) 0%, rgba(96,31,168,1) 0%, rgba(0,37,82,1) 100%);
+  background: -webkit-radial-gradient(circle, rgba(230,248,248,1) 0%, rgba(24,71,107,1) 0%, rgba(96,31,168,1) 0%, rgba(0,37,82,1) 100%);
+  background: radial-gradient(circle, rgba(230,248,248,1) 0%, rgba(24,71,107,1) 0%, rgba(96,31,168,1) 0%, rgba(0,37,82,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e6f8f8",endColorstr="#002552",GradientType=1);
+}
+
+html{
+  font-family: 'the-boys';
+}
+
+.shadowed{
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  transition: .10s;
+}
+
+.shadowed:hover{
+  text-shadow: #FC0 1px 0 2px;
+}
+
+.title-home{
+  font-size: calc(2rem + 2vw);
+}
