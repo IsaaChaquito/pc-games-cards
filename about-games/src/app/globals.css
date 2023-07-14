@@ -108,7 +108,14 @@ html{
 .card{
   width: 200px;
   height: 300px;
-  background: wheat;
+}
+
+.card > img{
+  transition: .3s;
+  object-fit: contain;
+}
+.card > img:hover{
+  object-position: 10px 10px;
 }
 
 

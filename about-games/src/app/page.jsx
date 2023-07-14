@@ -43,11 +43,12 @@ export default function Home() {
         </div>
       </div>
 
-      <section className='section flex flex-wrap justify-evenly mt-5 gap-2'>
+      <section className='section flex flex-wrap justify-evenly mt-5 gap-8 the-boys-font'>
         {games && games.results.map((game) =>{ 
           return(
             <div key={game.id} className='card border-spacing-3 border-green-400 border-4 flex flex-col'>
             <img className='card-background' src={game.background_image} alt='Image'></img>
+            <img className='card-background' src={game.short_screenshots[5].image} alt='Image'></img>
             <span className='card-title'>{game.name}</span>
             <span className='rating'>{game.rating}</span>
             <div className='card-details flex flex-col'>
@@ -63,7 +64,6 @@ export default function Home() {
           )
           
         })}
-        {/* <div className='card border-spacing-3 border-green-400 border-4'></div> */}
       </section>
 
     </main>
