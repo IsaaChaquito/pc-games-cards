@@ -3,7 +3,7 @@
 // export const dynamic = 'force-dynamic'
 // export const dynamicParams = true
 // export const revalidate = false
-// export const fetchCache = 'default-no-store'
+// export const fetchCache = 'auto'
 // export const runtime = 'nodejs'
 // export const preferredRegion = 'auto'
 
@@ -18,7 +18,7 @@ export default function Home() {
   const getFirstPageGames = async () =>{
     await getGamesPerPage(1)
     .then(res =>{
-      console.log('res home', res)
+      // console.log('res home', res)
       setGames(res)
     })
   }
@@ -46,21 +46,23 @@ export default function Home() {
       <section className='section flex flex-wrap justify-evenly mt-5 gap-8 the-boys-font'>
         {games && games.results.map((game) =>{ 
           return(
-            <div key={game.id} className='card border-spacing-3 border-green-400 border-4 flex flex-col'>
-            <img className='card-background' src={game.background_image} alt='Image'></img>
-            <img className='card-background' src={game.short_screenshots[5].image} alt='Image'></img>
-            <span className='card-title'>{game.name}</span>
-            <span className='rating'>{game.rating}</span>
-            <div className='card-details flex flex-col'>
-            <span className='flex text-sm'>Gendre:
-              {game.genres.map((genre) =>{
-                return genre.name + ' '
-              })}
-            </span>
-              <span>{game.released}</span>
-              <span>Price: 60$</span>
+            <div key={game.id} className='card overflow-hidden border-spacing-3 border-green-400 border-4 flex flex-col text-[.8rem] text-white'>
+              <img className='card-background' src={game.background_image} alt='Image'></img>
+              <div className='absolute bottom-0 flex flex-col pl-2 pr-2 z-10'>
+                <span className='card-title'>{game.name}</span>
+                <span className='rating'>{game.rating}</span>
+                <div className='card-details flex flex-col'>
+                <span className=''>Gendre:
+                  {game.genres.map((genre) =>{
+                    return genre.name + ' '
+                  })}
+                </span>
+                <span>Released: {game.released}</span>
+                <span>Price: $60</span>
+              </div>
+
+              </div>
             </div>
-          </div>
           )
           
         })}
