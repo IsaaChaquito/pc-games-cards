@@ -122,9 +122,17 @@ html{
   position: absolute;
   object-fit: cover;
   transition: .3s;
-  /* top: 0; */
-  /* bottom: 0;
-  left: 0;
-  right: 0; */
 }
+
+.card:hover .card-background{
+  height: 57%;
+}
+
+.one-star{background: #ff4545c7;}
+.two-stars{background: #ffa534b3;}
+.three-stars{background: #ffe234b3;}
+.four-stars{background: #b7dd29b3;}
+.five-stars{background: #57e32cb3;}
+
+
 
