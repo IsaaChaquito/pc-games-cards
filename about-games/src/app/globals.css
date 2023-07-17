@@ -20,14 +20,6 @@
 }
 
 body {
-  /* color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-  font-family: 'the-boys'; */
   background: rgb(230,248,248);
   background: -moz-radial-gradient(circle, rgba(230,248,248,1) 0%, rgba(24,71,107,1) 0%, rgba(96,31,168,1) 0%, rgba(0,37,82,1) 100%);
   background: -webkit-radial-gradient(circle, rgba(230,248,248,1) 0%, rgba(24,71,107,1) 0%, rgba(96,31,168,1) 0%, rgba(0,37,82,1) 100%);
@@ -111,6 +103,25 @@ html{
   position: relative;
 }
 
+.card:hover .span-1{
+  left: 200px;
+  transition: .3s;
+  transition-delay: .3s;
+}
+
+.card-details > span:nth-child(1){
+  transition: .3s;
+  transition-delay: .3s;
+}
+.card-details > span:nth-child(3){
+  transition: .3s;
+  transition-delay: .6s;
+}
+.card-details > span:nth-child(4){
+  transition: .3s;
+  transition-delay: .9s;
+}
+
 .section{
   width: 100%;
   /* background: black; */
@@ -121,18 +132,77 @@ html{
   height: 100%;
   position: absolute;
   object-fit: cover;
-  transition: .3s;
+}
+
+.card-background-2{
+  min-width: 100%;
+  height: 116px;
+  position: absolute;
+  bottom: 0;
+  object-fit: cover;
 }
 
 .card:hover .card-background{
   height: 57%;
 }
 
-.one-star{background: #ff4545c7;}
-.two-stars{background: #ffa534b3;}
-.three-stars{background: #ffe234b3;}
-.four-stars{background: #b7dd29b3;}
-.five-stars{background: #57e32cb3;}
+.one-star{background: #ff4545;}
+.two-stars{background: #ffa534;}
+.three-stars{background: #ffe234;}
+.four-stars{background: #b7dd29;}
+.five-stars{background: #57e32c;}
 
+.card:not(:hover) .rating{
+  transition-delay: 0s;
+}
 
+.Update {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  overflow: hidden;
+  width: 70px;
+  height: 70px;
+  z-index: 333333333;
+}
 
+.Update span {
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  left: -5px;
+  top: 13px;
+  color: #fff;
+  font-size: 7px;
+  font-weight: 700;
+  width: 100px;
+  text-align: center;
+  text-transform: uppercase;
+  /* background-color: #e03e3e; */
+  z-index: 2;
+  line-height: 25px;
+}
+
+.Update::before, .Update::after {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  content: '';
+  z-index: 1;
+}
+
+.Update::before {
+  right: 0px;
+  bottom: 2px;
+  background-color: #328618; /*Color must by dynamically set*/
+  height: 7px;
+}
+
+.Update::after {
+  left: 0px;
+  top: 0;
+  background-color: #328618;
+  width: 7px;
+}
