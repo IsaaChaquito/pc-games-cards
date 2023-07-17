@@ -101,6 +101,12 @@ html{
   width: 300px;
   height: 400px;
   position: relative;
+  /* box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 8px 0px; */
+  box-shadow: rgba(0, 0, 0, 0.7) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.card:hover{
+  box-shadow: rgba(255, 255, 255, 0.7) 0px 2px 8px 0px;
 }
 
 .card:hover .span-1{
@@ -109,7 +115,7 @@ html{
   transition-delay: .3s;
 }
 
-.card-details > span:nth-child(1){
+/* .card-details > span:nth-child(1){
   transition: .3s;
   transition-delay: .3s;
 }
@@ -120,7 +126,7 @@ html{
 .card-details > span:nth-child(4){
   transition: .3s;
   transition-delay: .9s;
-}
+} */
 
 .section{
   width: 100%;
@@ -147,16 +153,22 @@ html{
 }
 
 .one-star{background: #ff4545;}
+.one-star-edges{background: #852424;}
 .two-stars{background: #ffa534;}
+.two-stars-edges{background: #85551b;}
 .three-stars{background: #ffe234;}
+.three-stars-edges{background: #85751b;}
 .four-stars{background: #b7dd29;}
+.four-stars-edges{background: #718a19;}
 .five-stars{background: #57e32c;}
+.five-stars-edges{background: #328519;}
 
 .card:not(:hover) .rating{
   transition-delay: 0s;
 }
 
-.Update {
+
+.rate-tag {
   position: absolute;
   right: -5px;
   top: -5px;
@@ -164,9 +176,23 @@ html{
   width: 70px;
   height: 70px;
   z-index: 333333333;
+  opacity: .3;
+  scale: .9;
+  pointer-events: none;
+  transition: .3s;
 }
 
-.Update span {
+.card-wrapper:hover .rate-tag{
+  opacity: 1;
+  scale: 1;
+}
+
+.card-wrapper:hover .tag-edge-bottom, 
+.card-wrapper:hover .tag-edge-top{
+  opacity: 1;
+}
+
+.rate-tag span {
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
@@ -180,29 +206,24 @@ html{
   width: 100px;
   text-align: center;
   text-transform: uppercase;
-  /* background-color: #e03e3e; */
   z-index: 2;
   line-height: 25px;
 }
 
-.Update::before, .Update::after {
+.tag-edge-bottom, .tag-edge-top {
   position: absolute;
   width: 5px;
   height: 5px;
   content: '';
-  z-index: 1;
+  opacity: 0;
 }
 
-.Update::before {
+.tag-edge-bottom {
   right: 0px;
-  bottom: 2px;
-  background-color: #328618; /*Color must by dynamically set*/
-  height: 7px;
+  bottom: 1px;
 }
 
-.Update::after {
-  left: 0px;
+.tag-edge-top {
+  left: 1px;
   top: 0;
-  background-color: #328618;
-  width: 7px;
 }

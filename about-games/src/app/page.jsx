@@ -15,6 +15,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 
 export default function Home() {
+
 	const [games, setGames] = useState();
 
 	const getFirstPageGames = async () => {
@@ -30,14 +31,15 @@ export default function Home() {
 
 	const rating = ["⭐", "⭐⭐", "⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐⭐⭐"];
 
+	//background color depending in the game rating
 	const colorRating = [
-		//background color depending the game rating
-		"one-star",
-		"tow-stars",
-		"three-stars",
-		"four-stars",
-		"five-stars",
+		['one-star', 'one-star-edges'],
+		['tow-stars', 'tow-stars-edges'],
+		['three-stars', 'three-stars-edges'],
+		['four-stars', 'four-stars-edges'],
+		['five-stars', 'five-stars-edges']
 	];
+
 
 	const titleStyle =
 		"text-rose-600 the-boys-font select-none leading-normal hover:drop-shadow-2xl mr-5 title-home shadowed drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] pl-2 pr-2 ";
@@ -62,8 +64,12 @@ export default function Home() {
 					games.results.map((game) => {
 						return (
 							<div className="card-wrapper relative">
-									<span className="Update">
-										<span className={colorRating[Math.floor(game.rating)]}>{rating[Math.floor(game.rating) - 1]}</span>
+									<span className="rate-tag">
+										<div className={"tag-edge-top " + colorRating[Math.floor(game.rating)][1]}></div>
+										<div className={"tag-edge-bottom " + colorRating[Math.floor(game.rating)][1]}></div>
+										<span className={colorRating[Math.floor(game.rating)][0]}>
+											{rating[Math.floor(game.rating) - 1]}
+										</span>
 									</span>
 								<div
 									key={game.id}
@@ -77,9 +83,9 @@ export default function Home() {
 									></img>
 
 									<span
-										className={`absolute top-0 w-full h-[100%] group-hover:h-14 flex items-center justify-center text-xl text-center  pl-1 pr-1 text-[#ffffffd3] bg-[#00000081] group-hover:bg-[#000000] group-hover:top-[57%] duration-300`}
+										className={`absolute top-0 w-full h-[100%] group-hover:h-14 flex items-center justify-center text-xl text-center  pl-1 pr-1 text-[#ffffffde] bg-[#00000081] group-hover:bg-[#000000] group-hover:top-[57%] duration-300 `}
 									>
-										{game.name}{" "}
+										{game.name}
 									</span>
 
 									<span
