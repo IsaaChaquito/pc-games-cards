@@ -8,7 +8,7 @@
 // export const runtime = 'nodejs'
 // export const preferredRegion = 'auto'
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./assets/fonts/fonts.css";
 import { getGamesPerPage } from "./services/api-games";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -17,6 +17,22 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 export default function Home() {
 
 	const [games, setGames] = useState();
+	const genreRef = useRef(null)
+
+	const showActualGenre = (genres) => {
+		// let index = 0; // Variable para realizar un seguimiento del índice del género actual
+		
+		// const interval = setInterval(() => {
+		// 	if (index < genres.length) {
+		// 		console.log('actualGenre:', genres[index].name);
+		// 		index++; // Incrementar el índice para mostrar el siguiente género en la siguiente iteración
+		// 	} else {
+		// 		clearInterval(interval); // Detener el intervalo cuando se han mostrado todos los géneros
+		// 		// index = 0
+		// 	}
+		// }, 3000);
+	};
+	
 
 	const getFirstPageGames = async () => {
 		await getGamesPerPage(1).then((res) => {
@@ -47,6 +63,23 @@ export default function Home() {
 	const spanDetailsStyle =
 		"rating flex absolute left-[-100%] group-hover:left-1 duration-300 ";
 
+	// const switchGenres = (genres, i) => {
+	// 	let i = 0
+	// 	// return (
+	// 		setInterval(() => {
+	// 			// i < genres.length-1 ? genres[i++].name : i=0
+	// 			if(i < genres.length-1){
+	// 				return genres[i++].name
+	// 			}else{
+	// 				i=0
+	// 				return genres[i].name
+	// 			}
+	// 		}, 2000)
+	// 	// )
+	// }
+
+
+
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between p-24">
 			<div className="flex flex-col md:flex-row">
@@ -63,7 +96,7 @@ export default function Home() {
 				{games &&
 					games.results.map((game) => {
 						return (
-							<div className="card-wrapper relative">
+							<div className="card-wrapper relative" >
 									<span className="rate-tag">
 										<div className={"tag-edge-top " + colorRating[Math.floor(game.rating)][1]}></div>
 										<div className={"tag-edge-bottom " + colorRating[Math.floor(game.rating)][1]}></div>
@@ -89,23 +122,25 @@ export default function Home() {
 									</span>
 
 									<span
-										className={spanDetailsStyle + "bottom-[3rem] delay-[100ms]"}
+										className={spanDetailsStyle + 'bottom-[4.5rem] delay-[100ms]'}
 									>
 										Rating:&nbsp;
 										{game.rating}
 									</span>
 
 									<span
-										className={spanDetailsStyle + "bottom-[2rem] delay-[200ms]"}
+										className={spanDetailsStyle + "bottom-[3rem] delay-[200ms]"}
 									>
 										Gendre:
-										{game.genres.map((genre) => {
+										{/* {game.genres.map((genre) => {
 											return genre.name + " ";
-										})}
+										})} */}
+										{showActualGenre(game.genres)}
+										{/* <span ref={genreRef}></span> */}
 									</span>
 
 									<span
-										className={spanDetailsStyle + "bottom-[1rem] delay-[300ms]"}
+										className={spanDetailsStyle + "bottom-[1.5rem] delay-[300ms]"}
 									>
 										Released: {game.released}
 									</span>
@@ -113,8 +148,9 @@ export default function Home() {
 									<span className={spanDetailsStyle + "bottom-0 delay-[400ms]"}>
 										Price: $60
 									</span>
+									</div>
 								</div>
-							</div>
+
 						);
 					})}
 			</section>

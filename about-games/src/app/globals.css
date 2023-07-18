@@ -101,32 +101,22 @@ html{
   width: 300px;
   height: 400px;
   position: relative;
+  transition: .3s;
   /* box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 8px 0px; */
-  box-shadow: rgba(0, 0, 0, 0.7) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  /* box-shadow: rgba(0, 0, 0, 0.7) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; */
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 5px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px;
+  cursor: pointer;
 }
 
-.card:hover{
-  box-shadow: rgba(255, 255, 255, 0.7) 0px 2px 8px 0px;
-}
+/* .card:hover{
+  box-shadow: rgba(0, 0, 0, 0.7) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+} */
 
 .card:hover .span-1{
   left: 200px;
   transition: .3s;
   transition-delay: .3s;
 }
-
-/* .card-details > span:nth-child(1){
-  transition: .3s;
-  transition-delay: .3s;
-}
-.card-details > span:nth-child(3){
-  transition: .3s;
-  transition-delay: .6s;
-}
-.card-details > span:nth-child(4){
-  transition: .3s;
-  transition-delay: .9s;
-} */
 
 .section{
   width: 100%;
@@ -163,13 +153,18 @@ html{
 .five-stars{background: #57e32c;}
 .five-stars-edges{background: #328519;}
 
-.card:not(:hover) .rating{
+.card:not(:hover) .rating, .card:not(:hover) .pb-delay{
   transition-delay: 0s;
 }
 
+/* .card:hover .pb-delay{
+  padding-bottom: 3rem;
+  transition-delay: 1s;
+} */
 
 .rate-tag {
   position: absolute;
+  bottom: 0;
   right: -5px;
   top: -5px;
   overflow: hidden;
