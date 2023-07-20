@@ -4,13 +4,16 @@
 import React, { useEffect, useState } from "react";
 import { rating, colorRating, pageInputPattern } from "./utils/utils";
 import { getGamesByPage } from "./services/api-games";
+import { validatePage } from "./utils/validations";
 
 export default function Home() {
-	const [games, setGames] = useState();
-	const [totalPages, setTotalPages] = useState(0);
-	const [cardsPerPage, setCardsPerPage] = useState(0);
-	const [pageNumber, setPageNumber] = useState(1);
-	const [actualPage, setActualPage] = useState(1);
+
+	const [games, setGames] = useState()
+	const [totalPages, setTotalPages] = useState(0)
+	const [cardsPerPage, setCardsPerPage] = useState(0)
+	const [pageNumber, setPageNumber] = useState(1)
+	const [actualPage, setActualPage] = useState(1)
+	const [searchPage, setSearchPage] = useState('')
 	
 
 	// const showActualGenre = (genres) => {
@@ -33,13 +36,12 @@ export default function Home() {
 			setGames(res);
 			setTotalPages(Math.ceil(res.count / 20));
 			setCardsPerPage(res.results.length);
-			setPageNumber(pageNumber);
+			setPageNumber(Number(pageNumber));
 		});
 	};
 
 	const goToPageHandler = (page) => {
-		pageNumber + page >= 1 && setPageNumber(pageNumber + page);
-		console.log(pageNumber + page);
+		(pageNumber + page) >= 1 && setPageNumber(pageNumber + page);
 	};
 
 	useEffect(() => {
@@ -61,6 +63,19 @@ export default function Home() {
 	const spanDetailsStyle =
 		"rating flex absolute left-[-100%] group-hover:left-1 duration-300 ";
 
+		const inputPageHandler = (e) =>{setSearchPage(e.target.value)}
+
+		const buttonPageHandler = () =>{
+			console.log('click')
+			if(validatePage(searchPage, totalPages)){
+				console.log('if true')
+				setPageNumber(searchPage)
+			}
+		}
+
+		const isEmptySearch = () =>{
+			return searchPage.length > 0
+		}
 	// const switchGenres = (genres, i) => {
 	// 	let i = 0
 	// 	// return (
@@ -77,7 +92,7 @@ export default function Home() {
 	// }
 
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-between p-24">
+		<main className="flex min-h-screen flex-col items-center justify-between pl-24 pr-24">
 			<div className="flex flex-col md:flex-row">
 				<span className={titleStyle}>is</span>
 				<span className={titleStyle + "spacing-effect"}>this</span>
@@ -95,7 +110,7 @@ export default function Home() {
 					games.results.map((game) => {
 						return (
 							<div key={game.id} className="card-wrapper relative">
-								<span className="rate-tag">
+								<span className="rate-tag" hidden={game.rating === 0}>
 									<div
 										className={
 											"tag-edge-top " + colorRating[Math.floor(game.rating)][1]
@@ -161,19 +176,8 @@ export default function Home() {
 					})}
 			</section>
 
-			<section className="mt-12">
-				<div className="flex flex-col items-center">
-					<span className="text-sm text-gray-700 dark:text-gray-400 flex items-center gap-2">
-						Go to page #
-						<input
-							type="text"
-							pattern={pageInputPattern}
-							title="Debe ser un número del 1 al 42573"
-							className={
-								"flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-gray-800 rounded hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white w-[4.150rem] text-center mb-3"
-							}
-						></input>
-					</span>
+			<section >
+				<div className="flex flex-col items-center mt-10 mb-10">				
 
 					<span className="text-sm text-gray-700 dark:text-gray-400">
 						Page{" "}
@@ -194,7 +198,7 @@ export default function Home() {
 						<button
 							onClick={() => goToPageHandler(-1)}
 							className={
-								"flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" +
+								"flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white select-none" +
 								(actualPage === 1 && " opacity-50 pointer-events-none")
 							}
 						>
@@ -217,7 +221,7 @@ export default function Home() {
 						</button>
 						<button
 							onClick={() => goToPageHandler(1)}
-							className="flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+							className="flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white select-none"
 						>
 							Next
 							<svg
@@ -237,6 +241,24 @@ export default function Home() {
 							</svg>
 						</button>
 					</div>
+
+					<span className="relative text-sm text-gray-700 dark:text-gray-400 flex flex-col items-center justify-center gap-1 mt-3 select-none duration-300">
+					Go to
+						<button onClick={buttonPageHandler} className={"absolute rounded-full w-12 h-6 bg-blue-400 bottom-[2.4rem] scale-0 duration-300" + (isEmptySearch() && ' scale-100 drop-shadow-2xl text-gray-950')}>
+						Go to
+						</button>
+
+						<input
+							type="text"
+							onChange={inputPageHandler}
+							placeholder="page #"
+							title={`Debe ser un número del 1 al ${totalPages}`}
+							className={
+								"flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-gray-800 rounded hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white w-[4.5rem] text-center mt-1"
+							}
+						></input>
+					</span>
+
 				</div>
 			</section>
 		</main>
