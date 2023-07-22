@@ -3,6 +3,35 @@
   src: url(charlie-dont-surf.ttf);
 }
 
+@font-face {
+  font-family: 'Roboto-serif-thin';
+  src: url(./roboto_serif/RobotoSerif-Thin.ttf);
+}
+
+@font-face {
+  font-family: 'Roboto-serif-light';
+  src: url(./roboto_serif/RobotoSerif-Light.ttf);
+}
+
+@font-face {
+  font-family: 'Roboto-serif-regular';
+  src: url(./roboto_serif/RobotoSerif-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Roboto-serif-semibold';
+  src: url(./roboto_serif/RobotoSerif-SemiBold.ttf);
+}
+
+.roboto-serif-thin{
+  font-family: 'Roboto-serif-thin';
+}
+
+.roboto-serif-regular{
+  font-family: 'Roboto-serif-regular';
+}
+
 .the-boys-font{
   font-family: 'the-boys';
 }
+
