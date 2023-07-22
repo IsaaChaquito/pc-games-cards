@@ -170,7 +170,7 @@ html{
   overflow: hidden;
   width: 70px;
   height: 70px;
-  z-index: 333333333;
+  z-index: 1000;
   opacity: .3;
   scale: .9;
   pointer-events: none;

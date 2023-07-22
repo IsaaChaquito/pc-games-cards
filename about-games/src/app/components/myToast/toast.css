@@ -1,7 +1,7 @@
 @import url(../../assets/fonts/fonts.css);
 
 .toast-wrapper{
-  position: absolute;
+  position: fixed;
   bottom: 1.5rem;
   right: 25px;
   background: #ffffff;

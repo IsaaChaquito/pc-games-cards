@@ -52,6 +52,7 @@ export const Cards = ({games}) =>{
                 className={spanDetailsStyle + "bottom-[3rem] delay-[200ms]"}
               >
                 Gendre:
+                {' ' + game.genres[0]?.name}
                 {/* {game.genres.map((genre) => {
                   return genre.name + " ";
                 })} */}

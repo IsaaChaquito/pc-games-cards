@@ -16,7 +16,7 @@ export default function Home() {
 	const [pageNumber, setPageNumber] = useState(1)
 	const [actualPage, setActualPage] = useState(1)
 	const [searchPage, setSearchPage] = useState('')
-	const [popToast, setPopToast] = useState(false)
+	const [showToast, setShowToast] = useState(false)
 	
 
 	// const showActualGenre = (genres) => {
@@ -69,12 +69,10 @@ export default function Home() {
 			if(validatePage(searchPage, totalPages)){
 				setPageNumber(searchPage)
 			}else{
-				setPopToast(true)
-				console.log('popToast open')
+				setShowToast(true)
 				setTimeout(() => {
-					setPopToast(false)
-				console.log('popToast close')
-				}, 30000);
+					setShowToast(false)
+				}, 3000);
 			}
 		}
 
@@ -112,7 +110,6 @@ export default function Home() {
 
 			<section className="section flex flex-wrap justify-evenly mt-40 gap-8 the-boys-font">
 				<Cards games={games} />
-
 			</section>
 
 			<section>
@@ -131,9 +128,8 @@ export default function Home() {
 			<MyToast
 				type={'danger'}
 				text={'Type a valid number of page!'}
-				widthIcon={34}
-				heightIcon={34}
-				isOpen={popToast}
+				isOpen={showToast}
+				setIsOpen={setShowToast}
 				/>
 		</main>
 	);
